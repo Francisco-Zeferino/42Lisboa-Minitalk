@@ -24,8 +24,7 @@ void	binToChar(int sig)
 	bit++;
 	if (bit == 8)
 	{
-		printf("Aqui!");
-		printf("%c", i);
+		ft_printf("%c", i);
 		bit = 0;
 		i = 0;
 	}
@@ -38,11 +37,11 @@ int	main(int argc, char **argv)
 	(void)argv;
 	if (argc != 1)
 	{
-		printf("No input required!");
+		ft_printf("No input required!");
 		return (1);
 	}
 	pid = getpid();
-	printf("PID : %d\n", pid);
+	ft_printf("PID : %d\n", pid);
 	while (argc == 1)
 	{
 		signal(SIGUSR1, binToChar);
