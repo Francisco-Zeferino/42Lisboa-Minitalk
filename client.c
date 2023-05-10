@@ -5,11 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ffilipe- <ffilipe-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 20:24:25 by ffilipe-          #+#    #+#             */
-/*   Updated: 2023/05/06 15:21:57 by ffilipe-         ###   ########.fr       */
+/*   Created: 2023/05/05 11:17:14 by ffilipe-          #+#    #+#             */
+/*   Updated: 2023/05/10 11:31:10 by ffilipe-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf/ft_printf.h"
 #include "minitalk.h"
 
 int	ft_atoi(const char *str)
@@ -40,7 +41,7 @@ int	ft_atoi(const char *str)
 	return (sign * result);
 }
 
-void	sendBits(int pid, char c)
+void	send_bits(int pid, char c)
 {
 	int	bit;
 
@@ -51,7 +52,7 @@ void	sendBits(int pid, char c)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(100);
+		usleep(250);
 		bit++;
 	}
 }
@@ -67,9 +68,10 @@ int	main(int argc, char **argv)
 		pid = ft_atoi(argv[1]);
 		while (argv[2][i] != '\0')
 		{
-			sendBits(pid, argv[2][i]);
+			send_bits(pid, argv[2][i]);
 			i++;
 		}
+		send_bits(pid, argv[2][i]);
 	}
 	else
 	{
